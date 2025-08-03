@@ -1,2 +1,2 @@
-g++ -v main.cpp -o app.exe -Iinclude -IC:/msys64/mingw64/include -LC:/msys64/mingw64/lib -lcurl -lssl -lcrypto -lz -lws2_32 -lcrypt32
+g++ main.cpp -o app.exe -std=c++17 -Iinclude -IC:\msys64\mingw64\include -Llib -LC:\msys64\mingw64\lib -lssl -lcrypto -lws2_32 -lcrypt32
 app
