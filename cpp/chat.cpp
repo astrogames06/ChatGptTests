@@ -22,10 +22,11 @@ int main() {
 
         if (input == "exit") break;
 
-        std::string body = R"({
-            "model": "gpt-4o-mini",
-            "input": ")" + input + R"("
-        })";
+        nlohmann::json body_json = {
+            {"model", "gpt-4o-mini"},
+            {"input", input}
+        };
+        std::string body = body_json.dump();
 
         auto res = cli.Post("/v1/responses", body, "application/json");
 
