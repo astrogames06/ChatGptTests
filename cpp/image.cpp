@@ -14,9 +14,13 @@ int main() {
         {"Authorization", "Bearer " + api_key}
     });
 
+    std::string input;
+    std::cout << "Image: ";
+    std::getline(std::cin, input);
+
     std::string body = R"({
         "model": "dall-e-2",
-        "prompt": "A cute baby sea otter",
+        "prompt": "})" + input + R"({",
         "n": 1,
         "size": "1024x1024"
     })";
@@ -39,7 +43,9 @@ int main() {
 
         auto img_res = img_cli.Get(path.c_str());
 
-        std::ofstream out("output.png", std::ios::binary);
+        input.erase(std::remove(input.begin(), input.end(), ' '), input.end());
+
+        std::ofstream out(input + ".png", std::ios::binary);
         out << img_res->body;
         out.close();
     } else {
